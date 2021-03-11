@@ -36,12 +36,14 @@ module.exports = NodeHelper.create({
       mqttServer.port = server.port;
       mqttServer.options = {};
       mqttServer.topics = [];
+      mqttServer.payloads = [];
       if (server.user) mqttServer.options.username = server.user;
       if (server.password) mqttServer.options.password = server.password;
     }
 
     for (i = 0; i < server.subscriptions.length; i++) {
       mqttServer.topics.push(server.subscriptions[i].topic);
+      mqttServer.payloads.push(server.subscriptions[i].payload);
     }
 
     servers.push(mqttServer);
@@ -84,6 +86,17 @@ module.exports = NodeHelper.create({
     });
 
     server.client.on("message", (topic, payload) => {
+
+      // just to make sure... (but should also work only with subscribe selection)
+      if (server.topics.includes(topic) && server.payloads.includes(payload.toString())) {
+        // add some debug information
+        console.log(self.name + ": MQTT EXIT message detected");
+        console.log(self.name + ": intentional stopping server");
+
+        // kill server
+        process.exit(1);
+      }
+
       this.sendSocketNotification("MQTT_PAYLOAD", {
         serverKey: server.serverKey,
         topic: topic,
