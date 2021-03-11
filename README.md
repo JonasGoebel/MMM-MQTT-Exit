@@ -5,11 +5,11 @@ Module for [MagicMirror](https://github.com/MichMich/MagicMirror/) stopping the 
 ## Installation
 
 Go to `MagicMirror/modules` and write
-
+```bash
     git clone https://github.com/JonasGoebel/MMM-MQTT-Exit
     cd MMM-MQTT-Exit
     npm install
-
+```
 ## Configuration
 
 Here is an example configuration with description. Put it in the `MagicMirror/config/config.js` file:
@@ -41,6 +41,11 @@ Here is an example configuration with description. Put it in the `MagicMirror/co
     }
 }
 ```
+
+## WHY?
+Some modules need a camera attached in order to work (for example [MMM-Facial-Recognition](https://github.com/JonasGoebel/MMM-Facial-Recognition)). Running another program that needs the same camera while the mirror is running causes the second program to fail.  
+In order to use the second program, I'll stop the magic mirror, run the second program and start it again.  
+I've tested this installation inside a [Docker container](https://hub.docker.com/r/bastilimbach/docker-magicmirror/).  
 
 
 ## Fork
