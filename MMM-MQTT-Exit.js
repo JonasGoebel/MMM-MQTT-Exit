@@ -1,4 +1,4 @@
-Module.register("MMM-MQTT", {
+Module.register("MMM-MQTT-Exit", {
   log: function (...args) {
     if (this.config.logging) {
       args.forEach((arg) => console.log(arg));
@@ -180,55 +180,6 @@ Module.register("MMM-MQTT", {
   },
 
   getDom: function () {
-    self = this;
-    var wrapper = document.createElement("table");
-    wrapper.className = "small";
-
-    if (self.subscriptions.length === 0) {
-      wrapper.innerHTML = self.loaded
-        ? self.translate("EMPTY")
-        : self.translate("LOADING");
-      wrapper.className = "small dimmed";
-      console.log(self.name + ": No values");
-      return wrapper;
-    }
-
-    self.subscriptions
-      .sort((a, b) => {
-        return a.sortOrder - b.sortOrder;
-      })
-      .forEach(function (sub) {
-        var subWrapper = document.createElement("tr");
-        let colors = self.getColors(sub);
-
-        // Label
-        var labelWrapper = document.createElement("td");
-        labelWrapper.innerHTML = sub.label;
-        labelWrapper.className = "align-left mqtt-label";
-        labelWrapper.style.color = colors.label;
-        subWrapper.appendChild(labelWrapper);
-
-        // Value
-        tooOld = self.isValueTooOld(sub.maxAgeSeconds, sub.time);
-        var valueWrapper = document.createElement("td");
-        valueWrapper.innerHTML = self.convertValue(sub);
-        valueWrapper.className =
-          "align-right medium mqtt-value " + (tooOld ? "dimmed" : "bright");
-        valueWrapper.style.color = tooOld
-          ? valueWrapper.style.color
-          : colors.value;
-        subWrapper.appendChild(valueWrapper);
-
-        // Suffix
-        var suffixWrapper = document.createElement("td");
-        suffixWrapper.innerHTML = sub.suffix;
-        suffixWrapper.className = "align-left mqtt-suffix";
-        subWrapper.appendChild(suffixWrapper);
-        subWrapper.style.color = colors.suffix;
-
-        wrapper.appendChild(subWrapper);
-      });
-
-    return wrapper;
+    return null;
   },
 });

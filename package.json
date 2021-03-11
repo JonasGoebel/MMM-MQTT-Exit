@@ -1,11 +1,11 @@
 {
-  "name": "MMM-MQTT",
+  "name": "MMM-MQTT-Exit",
   "version": "0.0.1",
   "description": "Show payload from subscribed MQTT message",
-  "author": "Otto Paulsen",
+  "author": "Jonas Göbel",
   "repository": {
     "type": "git",
-    "url": "git://github.com/ottopaulsen/MMM-MQTT.git"
+    "url": "git://github.com/jonasgoebel/MMM-MQTT-Exit.git"
   },
   "license": "MIT",
   "dependencies": {
